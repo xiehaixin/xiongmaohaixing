@@ -35,8 +35,6 @@ public class MaoTaiMoitoring {
 
     private GZH_mao_tai mt = new GZH_mao_tai();
 
-    private final String XHX_MAOTAI_OPENID = "mQMtJNLoZfN7fZHbqLTIfs2bWuloHOjQOTQoXMsYoFk=";
-
     @Autowired
     private IMaoTaiService maoTaiService;
 
@@ -54,7 +52,7 @@ public class MaoTaiMoitoring {
             return;
         }
         // http 请求查询店铺
-        MaoTaiShopsBean maoTaiShopsBean = mt.monitoringMaoTaiShops(token+"#"+XHX_MAOTAI_OPENID,token);
+        MaoTaiShopsBean maoTaiShopsBean = mt.monitoringMaoTaiShops(token+"#"+analysisMessageService.getXHXMaoTaiOpenId(),token);
         if(!"000".equals(maoTaiShopsBean.getCode())){
             // 请求异常
             logger.info("{}",maoTaiShopsBean);
@@ -72,7 +70,7 @@ public class MaoTaiMoitoring {
             if("广东自营店".equals(shop.getV())){
                 logger.info("[广东自营店来了！！！！！！！]");
                 // http 请求查询广东自营店的商品
-                MaoTaiProductsBean maoTaiProductsBean = mt.helpBoxShopId(token + "#" + XHX_MAOTAI_OPENID, token, shop.getK());
+                MaoTaiProductsBean maoTaiProductsBean = mt.helpBoxShopId(token + "#" + analysisMessageService.getXHXMaoTaiOpenId(), token, shop.getK());
                 logger.info("{}",maoTaiProductsBean);
                 String base = "";
                 for (MaoTaiProductsRows row : maoTaiProductsBean.getData().getRows()){
@@ -107,7 +105,7 @@ public class MaoTaiMoitoring {
         difference.stream().forEach(shop -> {
             try {
                 // http 请求查询商品
-                MaoTaiProductsBean maoTaiProductsBean = mt.helpBoxShopId(token + "#" + XHX_MAOTAI_OPENID, token, shop.getK());
+                MaoTaiProductsBean maoTaiProductsBean = mt.helpBoxShopId(token + "#" + analysisMessageService.getXHXMaoTaiOpenId(), token, shop.getK());
                 if(!"000".equals(maoTaiProductsBean.getCode())){
                     logger.info("{}",maoTaiProductsBean);
                 }

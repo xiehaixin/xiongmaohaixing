@@ -3,17 +3,39 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+var os = require('os'),
+  iptable = [],
+  ifaces = os.networkInterfaces();
 
+
+for (var dev in ifaces) {
+  for (let i = 0; i < ifaces[dev].length; i++) {
+
+    if (ifaces[dev][i].family === "IPv4") {
+      console.log(ifaces[dev][i].address);
+      iptable.push(ifaces[dev][i].address);
+      break;
+    }
+  }
+}
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'https://xiehaixin.cn', //'http://120.79.165.74:8090/admin', 
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: iptable[0], // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

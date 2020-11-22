@@ -87,6 +87,7 @@ public class GZH_mao_tai {
             httpPost.setHeader("Referer","https://reserve.moutai.com.cn/mconsumer/?a=1&token="+token);
             httpPost.setHeader("x-forwarded-for","113.116.21.149");
             httpPost.setHeader("x-real-ip","113.116.21.149");
+            httpPost.setHeader("Origin","https://reserve.moutai.com.cn");
 
             Header[] allHeaders = httpPost.getAllHeaders();
             StringBuilder log = new StringBuilder("\n");

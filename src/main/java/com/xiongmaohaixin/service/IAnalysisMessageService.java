@@ -24,4 +24,5 @@ public interface IAnalysisMessageService {
 
     void haoshuiCustomSend(String content);
 
+    String getXHXMaoTaiOpenId();
 }

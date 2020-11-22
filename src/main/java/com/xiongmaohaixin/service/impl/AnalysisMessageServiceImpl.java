@@ -36,12 +36,21 @@ public class AnalysisMessageServiceImpl implements IAnalysisMessageService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final String XHX_OPENID = "oUze51XrnmckSPUcY5x3cuAOZ4Zw";
+    /** 茅台openid */
+    private final String XHX_MAO_TAI_OPENID = "mQMtJNLoZfN7fZHbqLTIfs2bWuloHOjQOTQoXMsYoFk=";
+
+    /** 最长告白的openid */
+    private final String XHX_ZUI_CHANG_OPENID = "oUze51XrnmckSPUcY5x3cuAOZ4Zw";
 
     private final List<String> haoshuiOpenId = Arrays.asList("oGLfUwE5ZHCB_d5tWdXaxZ-MOq_k","oGLfUwDl5_EOnZvNmrE6MMBlrPWo");
 
     private String haoshuiXHXOpenId = "oGLfUwE5ZHCB_d5tWdXaxZ-MOq_k";
 
+
+    @Override
+    public String getXHXMaoTaiOpenId() {
+        return XHX_MAO_TAI_OPENID;
+    }
 
     @Autowired
     private IMaoTaiService maoTaiService;
@@ -55,7 +64,7 @@ public class AnalysisMessageServiceImpl implements IAnalysisMessageService {
     public void message(WeChatPostXML xml) {
         String content = xml.getContent();
         if(WxMsgType.TEXT.equals(xml.getMsgType())
-                && XHX_OPENID.equals(xml.getFromUserName())
+                && XHX_ZUI_CHANG_OPENID.equals(xml.getFromUserName())
                 && !StringUtils.isBlank(content)
                 && content.length()==32){
             maoTaiService.setCode(content);
@@ -68,7 +77,7 @@ public class AnalysisMessageServiceImpl implements IAnalysisMessageService {
         String url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token="+getAccessToken();
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode personNode = mapper.createObjectNode();
-        personNode.put("touser",XHX_OPENID);
+        personNode.put("touser",XHX_ZUI_CHANG_OPENID);
         personNode.put("msgtype","text");
         ObjectNode textNode = mapper.createObjectNode();
         textNode.put("content",text);
