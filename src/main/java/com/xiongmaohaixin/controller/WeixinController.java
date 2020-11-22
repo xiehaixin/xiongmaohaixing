@@ -77,7 +77,7 @@ public class WeixinController {
         return "";
     }
 
-    @RequestMapping("/test")
+//    @RequestMapping("/test")
     public String test(WeChatPostXML dto){
         analysisMessageService.message(dto);
         return "ok";
@@ -106,7 +106,7 @@ public class WeixinController {
 
     private GZH_mao_tai mt = new GZH_mao_tai();
 
-    @RequestMapping("/myTest")
+//    @RequestMapping("/myTest")
     public String myTest(HttpServletRequest request) throws IOException {
         Enumeration<String> headerNames = request.getHeaderNames();
         StringBuilder log = new StringBuilder("\n");

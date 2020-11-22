@@ -14,4 +14,6 @@ public interface IMaoTaiService {
     void clearCode();
 
     String getCode();
+
+    String registerGetSlideCode(String lamboKey, String token);
 }

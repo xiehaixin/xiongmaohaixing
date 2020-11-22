@@ -50,6 +50,13 @@ public class GZH_mao_tai {
         return JacksonUtils.json2pojo(result, MaoTaiProductsBean.class);
     }
 
+    /** 获取验证码 */
+    public String registerGetSlideCode(String lamboKey, String token){
+        Map<String,String> param = new HashMap<>();
+        String result = goPostHttps("/api/rsv-server/anon/register/getSlideCode", param, lamboKey,token);
+        return result;
+    }
+
     public String myTest(String lamboKey, String token) throws IOException {
         Map<String,String> param = new HashMap<>();
         param.put("custId","******");
@@ -57,7 +64,7 @@ public class GZH_mao_tai {
         return result;
     }
 
-    private String goPostHttps(String api, Map<String,String> param, String lamboKey, String token){
+    public String goPostHttps(String api, Map<String,String> param, String lamboKey, String token){
         return goPostHttps("https://reserve.moutai.com.cn",api,param,lamboKey,token);
     }
 
