@@ -3,7 +3,9 @@ package com.xiongmaohaixin.utils;
 import com.xiongmaohaixin.bean.MaoTaiProductsBean;
 import com.xiongmaohaixin.bean.MaoTaiShopsBean;
 import org.apache.http.Header;
+import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -48,8 +50,19 @@ public class GZH_mao_tai {
         return JacksonUtils.json2pojo(result, MaoTaiProductsBean.class);
     }
 
+    public String myTest(String lamboKey, String token) throws IOException {
+        Map<String,String> param = new HashMap<>();
+        param.put("custId","******");
+        String result = goPostHttps("https://xiehaixin.cn","/weixin/event/receptionCode", param, lamboKey,token);
+        return result;
+    }
+
     private String goPostHttps(String api, Map<String,String> param, String lamboKey, String token){
-        String url = "https://reserve.moutai.com.cn"+api;
+        return goPostHttps("https://reserve.moutai.com.cn",api,param,lamboKey,token);
+    }
+
+    private String goPostHttps(String urlLocation,String api, Map<String,String> param, String lamboKey, String token){
+        String url = urlLocation+api;
         logger.info(url);
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -65,6 +78,8 @@ public class GZH_mao_tai {
             httpPost.setHeader("token","");
             httpPost.setHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             httpPost.setHeader("Referer","https://reserve.moutai.com.cn/mconsumer/?a=1&token="+token);
+            httpPost.setHeader("x-forwarded-for","113.116.21.149");
+            httpPost.setHeader("x-real-ip","113.116.21.149");
 
             Header[] allHeaders = httpPost.getAllHeaders();
             StringBuilder log = new StringBuilder("\n");

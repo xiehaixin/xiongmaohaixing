@@ -3,6 +3,11 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+vue_h5/node_modules/
+vue_h5/dist/
+vue_h5/npm-debug.log*
+vue_h5/yarn-debug.log*
+vue_h5/yarn-error.log*
 
 ### STS ###
 .apt_generated

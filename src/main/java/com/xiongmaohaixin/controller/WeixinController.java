@@ -5,6 +5,7 @@ import com.xiongmaohaixin.bean.WeChatPostXML;
 import com.xiongmaohaixin.config.WeiXinConfig;
 import com.xiongmaohaixin.service.IAnalysisMessageService;
 import com.xiongmaohaixin.service.IMaoTaiService;
+import com.xiongmaohaixin.utils.GZH_mao_tai;
 import com.xiongmaohaixin.wxDeciphering.AesException;
 import com.xiongmaohaixin.wxDeciphering.WXBizMsgCrypt;
 import org.apache.commons.lang.StringUtils;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * ClassName:WeixinController
@@ -82,13 +84,40 @@ public class WeixinController {
     }
 
     @RequestMapping("/receptionCode")
-    public String receptionCode(String openid, String code){
+    public String receptionCode(String openid, String code,HttpServletRequest request){
         logger.info("来服务了:{}",openid,code);
+        Enumeration<String> headerNames = request.getHeaderNames();
+        StringBuilder log = new StringBuilder("\n");
+        while (headerNames.hasMoreElements()){
+            String headerName = headerNames.nextElement();
+            String header = request.getHeader(headerName);
+            log.append(headerName).append("=").append(header).append("\n");
+        }
+        logger.info(log.toString());
+        if(StringUtils.isBlank(openid)||StringUtils.isBlank(code)){
+            return "error";
+        }
         if(analysisMessageService.getHaoshuiXHXOpenId().equals(openid)){
             maoTaiService.setCode(code);
             analysisMessageService.haoshuiCustomSend(openid,"ok，开始监控");
         }
         return "success";
+    }
+
+    private GZH_mao_tai mt = new GZH_mao_tai();
+
+    @RequestMapping("/myTest")
+    public String myTest(HttpServletRequest request) throws IOException {
+        Enumeration<String> headerNames = request.getHeaderNames();
+        StringBuilder log = new StringBuilder("\n");
+        while (headerNames.hasMoreElements()){
+            String headerName = headerNames.nextElement();
+            String header = request.getHeader(headerName);
+            log.append(headerName).append("=").append(header).append("\n");
+        }
+        logger.info(log.toString());
+        String ttt = mt.myTest("ttt", ",yToken");
+        return ttt;
     }
 
 }
