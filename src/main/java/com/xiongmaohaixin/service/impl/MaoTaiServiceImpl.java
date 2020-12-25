@@ -7,9 +7,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * ClassName:MaoTaiServiceImpl
  * Package:com.xiongmaohaixin.service.impl
@@ -26,7 +23,7 @@ public class MaoTaiServiceImpl implements IMaoTaiService {
     @Autowired
     private IAnalysisMessageService analysisMessageService;
 
-    private String code = "0731dcGa1vRf1A0RCdIa155clP31dcGF";
+    private String code = "";
 
     @Override
     public void setCode(String code) {

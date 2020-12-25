@@ -3,9 +3,7 @@ package com.xiongmaohaixin.utils;
 import com.xiongmaohaixin.bean.MaoTaiProductsBean;
 import com.xiongmaohaixin.bean.MaoTaiShopsBean;
 import org.apache.http.Header;
-import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -81,13 +79,12 @@ public class GZH_mao_tai {
             HttpPost httpPost = new HttpPost(url);
 
             httpPost.setHeader("Cookie","lambo-sso-key_0_="+lamboKey);
-            httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36 QBCore/4.0.1301.400 QQBrowser/9.0.2524.400 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2875.116 Safari/537.36 NetType/WIFI MicroMessenger/7.0.5 WindowsWechat");
+            httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36 QBCore/4.0.1301.400 QQBrowser/9.0.2524.400 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat");
             httpPost.setHeader("token","");
             httpPost.setHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             httpPost.setHeader("Referer","https://reserve.moutai.com.cn/mconsumer/?a=1&token="+token);
-            httpPost.setHeader("x-forwarded-for","113.116.21.149");
-            httpPost.setHeader("x-real-ip","113.116.21.149");
-            httpPost.setHeader("Origin","https://reserve.moutai.com.cn");
+            /*httpPost.setHeader("x-forwarded-for","103.39.235.147");
+            httpPost.setHeader("x-real-ip","103.39.235.147");*/
 
             Header[] allHeaders = httpPost.getAllHeaders();
             StringBuilder log = new StringBuilder("\n");
@@ -150,7 +147,7 @@ public class GZH_mao_tai {
             HttpGet httpGet = new HttpGet(uri);
 
             httpGet.setHeader("Cookie","lambo-sso-key_0_="+lamboKey);
-            httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36 QBCore/4.0.1301.400 QQBrowser/9.0.2524.400 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2875.116 Safari/537.36 NetType/WIFI MicroMessenger/7.0.5 WindowsWechat");
+            httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36 QBCore/4.0.1301.400 QQBrowser/9.0.2524.400 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat");
             httpGet.setHeader("token","");
             httpGet.setHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             httpGet.setHeader("Referer","https://reserve.moutai.com.cn/mconsumer/?a=1&token="+token);

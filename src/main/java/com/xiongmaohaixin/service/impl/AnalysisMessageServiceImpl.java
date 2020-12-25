@@ -141,7 +141,8 @@ public class AnalysisMessageServiceImpl implements IAnalysisMessageService {
             try {
                 String url = "https://sqweixin.haoshui.com.cn/weixin/sendXhxMessage?openId={0}&message={1}";
                 url = MessageFormat.format(url,openId,URLEncoder.encode(content,"UTF-8"));
-                HttpClientUtil.get(url);
+                String s = HttpClientUtil.get(url);
+                System.out.println(s);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
