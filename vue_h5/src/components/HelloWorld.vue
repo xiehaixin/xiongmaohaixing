@@ -34,6 +34,7 @@ a {
   color: #42b983;
 }
 .hello{
+  font-size: 12px;
   .haixing{
     width: 150px;
   }
