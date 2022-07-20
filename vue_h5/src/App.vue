@@ -1,19 +1,18 @@
 <template>
-  <div id="app">
-    <img class="zhu" src="./assets/zhu.jpg">
-    <router-view/>
-  </div>
+  <img class='zhu' src="./assets/zhu.jpg">
+  <router-view/>
 </template>
 
 <script>
+
 export default {
   name: 'App'
 }
 </script>
 
-<style lang="scss" scoped>
+<style  lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

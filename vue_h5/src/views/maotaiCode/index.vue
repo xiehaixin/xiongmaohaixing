@@ -7,6 +7,7 @@
 <script>
 import { getSlideCode } from '@/api/maotaiApi'
 export default {
+  name: 'index',
   data() {
     return {
 

@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>我是</h2>
-    <img class="haixing" src="@/assets/haixing.jpg" alt="">
+    <img class="haixing" src="@/assets/haixing.jpg" alt="海星">
   </div>
 </template>
 

@@ -1,21 +1,26 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import maotaiCode from '@/views/maotaiCode/index'
 
-Vue.use(Router)
 
-export default new Router({
-  routes: [
+const routes = [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/maotaiCode',
-      name: 'maotaiCode',
-      component: maotaiCode
-    },
-  ]
+        path: '/',
+        name: 'HelloWorld',
+        component: HelloWorld
+      },
+      {
+        path: '/maotaiCode',
+        name: 'maotaiCode',
+        component: maotaiCode
+      }
+]
+
+const routerHistory = createWebHashHistory()
+
+const routers = createRouter({
+    history: routerHistory,
+    routes:routes
 })
+
+export default routers
