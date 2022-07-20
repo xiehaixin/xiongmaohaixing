@@ -1,4 +1,4 @@
-# xiongmao_h5
+# xiongmaohaixing
 
 ## Project setup
 ```
@@ -22,3 +22,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## postcss  的版本为 8 atRoule 方法变为 AtRoule，报错的话，需要更改一下

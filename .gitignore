@@ -36,3 +36,6 @@ build/
 
 ### VS Code ###
 .vscode/
+.DS_Store
+.gitignore
+vue_h5/package-lock.json

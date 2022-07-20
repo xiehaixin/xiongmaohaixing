@@ -12,8 +12,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
-    "postcss": "^7.0.32",
-    "postcss-loader": "^7.0.1",
     "vue": "^3.2.13",
     "vue-router": "^4.1.2"
   },
@@ -23,11 +21,10 @@
     "@vue/cli-service": "~5.0.0",
     "node-sass": "^7.0.1",
     "postcss-px-to-viewport": "^1.1.1",
+    "postcss": "^8.2.6",
+    "postcss-loader": "^7.0.1",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2"
-  },
-  "resolutions": {
-    "postcss": "^7.0.32"
   },
   "browserslist": [
     "> 1%",
