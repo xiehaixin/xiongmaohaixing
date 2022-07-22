@@ -1,43 +1,65 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
-/*   css:{
-    loaderOptions:{
-      postcss:{
-        plugins: [
-          require('postcss-px-to-viewport')({
-            unitToConvert: 'px',    // 要转化的单位
-            viewportWidth: 375,     // UI设计稿的宽度
-            unitPrecision: 5,       // 转换后的精度，即小数点位数
-            propList: ['*'],        // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换
-            viewportUnit: 'vw',     // 指定需要转换成的视窗单位，默认vw
-            fontViewportUnit: 'vw', // 指定字体需要转换成的视窗单位，默认vw
-            selectorBlackList: [],  // 指定不转换为视窗单位的类名，
-            minPixelValue: 1,       // 默认值1，小于或等于1px则不进行转换
-            mediaQuery: false,      // 是否在媒体查询的css代码中也进行转换，默认false
-            replace: true,          // 是否转换后直接更换属性值
-            exclude: undefined,     // 设置忽略文件，用正则做目录名匹配
-            include: undefined,     //如果设置了include，那将只有匹配到的文件才会被转换
-            landscape: false,       // 是否处理横屏情况
-            landscapeUnit: 'vw',    //横屏时使用的单位
-            landscapeWidth: 568     //横屏时使用的视口宽度
-          })
-        ]
-      }
-    }
-  }, */
-  chainWebpack: config => {
+  // 打包路径详解参考：https://cli.vuejs.org/zh/config
+  publicPath: process.env.NODE_ENV === 'production' ? '/': '/',
+  assetsDir: 'static',
+  /* chainWebpack: config => {
     config
       .plugin('html')
       .tap(args => {
-        args[0].template = './index.html'
+        console.log('aaaaaaa',args)
         return args
       })
-  },
+  }, */
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns:[]
     }
-  }  
+  },
+  configureWebpack:{
+    devServer: {
+      port: 8081,
+      proxy: {
+        '/_api': {
+          target: 'https://xiehaixin.cn', //, 
+          changeOrigin: true,
+          pathRewrite: {
+            '^/_api': '/'
+          }
+        }
+      }
+    }
+  },
+  pages: {
+    index: {
+       // page 的入口
+       entry: 'src/main.js',
+       // 模板来源
+       template: 'public/index.html',
+       // 在 dist/index.html 的输出
+       filename: 'index.html',
+       // 当使用 title 选项时，
+       // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+       title: '看看没惊喜',
+       // 在这个页面中包含的块，默认情况下会包含
+       // 提取出来的通用 chunk 和 vendor chunk。
+       chunks: ['chunk-vendors', 'chunk-common', 'index']
+    },
+    privacyPage: {
+      // page 的入口
+      entry: 'src/privacyPage/main.js',
+      // 模板来源
+      template: 'public/index.html',
+      // 在 dist/index.html 的输出
+      filename: 'privacyPage/index.html',
+      // 当使用 title 选项时，
+      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+      title: '别浪费时间',
+      // 在这个页面中包含的块，默认情况下会包含
+      // 提取出来的通用 chunk 和 vendor chunk。
+      chunks: ['chunk-vendors', 'chunk-common', 'privacyPage']
+    }
+  }
 })

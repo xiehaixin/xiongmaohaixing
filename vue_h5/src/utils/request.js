@@ -5,7 +5,7 @@ const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
   // baseURL: process.env.VUE_APP_BASE_API,
   // baseURL: 'http://localhost:8801',
-  baseURL: process.env.NODE_ENV === "development" ? "api" : '', // 的 base_url process.env.VUE_APP_URL, 
+  baseURL: process.env.NODE_ENV === "development" ? "_api" : '', // 的 base_url process.env.VUE_APP_URL, 
   // 超时
   timeout: 10000
 })
@@ -54,6 +54,7 @@ service.interceptors.response.use(res => {
     } else {
       return res.data
     } */
+    return res.data
   },
   error => {
     console.log('err' + error)
