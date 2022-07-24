@@ -13,7 +13,22 @@
                         <p class="content">qq：{{re.qq}}</p>
                         <p class="copyBtn" v-clipboard:copy="re.qq">复制</p>
                     </div>
-                    <div class="result" v-if="re.phone"><p class="content">phone：{{re.phone}}</p><p class="copyBtn" v-clipboard:copy="re.phone">复制</p></div>
+                    <div class="result" v-if="re.phone">
+                        <p class="content">phone：{{re.phone}}</p>
+                        <p class="copyBtn" v-clipboard:copy="re.phone">复制</p>
+                    </div>
+                    <div class="result" v-if="re.email">
+                        <p class="content">email：{{re.email}}</p>
+                        <p class="copyBtn" v-clipboard:copy="re.email">复制</p>
+                    </div>
+                    <div class="result" v-if="re.idno">
+                        <p class="content">idno：{{re.idno}}</p>
+                        <p class="copyBtn" v-clipboard:copy="re.idno">复制</p>
+                    </div>
+                    <div class="result" v-if="re.name">
+                        <p class="content">name：{{re.name}}</p>
+                        <p class="copyBtn" v-clipboard:copy="re.name">复制</p>
+                    </div>
                     <div class="result" v-if="re.wb">
                         <p class="content">wb：{{re.wb}}</p>
                         <div class="copyBtns">
@@ -104,7 +119,7 @@ export default {
                                 phone: res[i].phone
                             }
                             _this.result.push(re)
-                        }else if(res[i].name || res[i].addr){
+                        }else if(res[i].addr){
                             let re = {
                                 sf: res[i]
                             }
