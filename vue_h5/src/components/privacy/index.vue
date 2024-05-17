@@ -47,6 +47,9 @@
                             <div class="sfContent"><p class="content">addr：{{re.sf.addr}}</p><p class="copyBtn" v-clipboard:copy="re.sf.addr">复制</p></div>
                         </div>
                     </div>
+                    <div class="result" v-if="re.wb">
+                        <iframe :src="'https://m.weibo.cn/u/'+re.wb" frameborder="0" width="100%" height="400px"></iframe>
+                    </div>
                 </div>
             </div>
             <div v-else>
@@ -104,30 +107,36 @@ export default {
                     return
                 }
                 for (let i = 0; i < res.length; i++) {
-                    if(inputDiv.name === 'qq'){
-                        _this.result.push(res[i])
-                    }else if(inputDiv.name === 'wb'){
-                        let re = {
-                            wb: res[i].uid,
-                            phone: res[i].phone
-                        }
-                        _this.result.push(re)
-                    }else{
-                        if(res[i].uid){
-                            let re = {
-                                wb: res[i].uid,
-                                phone: res[i].phone
-                            }
-                            _this.result.push(re)
-                        }else if(res[i].addr){
-                            let re = {
-                                sf: res[i]
-                            }
-                            _this.result.push(re)
-                        }else{
-                            _this.result.push(res[i])
-                        }
+                    let re = {};
+                    if(res[i].qq){
+                        re.qq = res[i].qq
                     }
+
+                    if(res[i].phone){
+                        re.phone = res[i].phone
+                    }
+
+                    if(res[i].uid){
+                        re.wb = res[i].uid
+                    }
+
+                    if(res[i].idno){
+                        re.idno = res[i].idno
+                    }
+
+                    if(res[i].email){
+                        re.email = res[i].email
+                    }
+
+                    if(res[i].name){
+                        re.name = res[i].name
+                    }
+
+                    if(res[i].addr){
+                        re.sf = res[i]
+                    }
+
+                    _this.result.push(re)
                 }
 
                 // 手机号展示去重

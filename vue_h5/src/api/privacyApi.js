@@ -22,3 +22,11 @@ export function wb(uid) {
     method: 'GET',
   })
 }
+// JJLin切换token
+export function JJLinCheckToken(_params) {
+  return request({
+    url: '/privacy/sign/jj20/addToken',
+    method: 'POST',
+    data: _params
+  })
+}
