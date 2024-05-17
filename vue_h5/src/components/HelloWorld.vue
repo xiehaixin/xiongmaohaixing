@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { homeClick } from '@/api/home'
+import { homeClick } from '@/api/home';
 export default {
   name: 'HelloWorld',
   data () {
@@ -21,23 +21,37 @@ export default {
   mounted() {
     // 添加点击事件监听器
     window.addEventListener('click', this.handleClick);
+    // 添加触摸事件监听器以覆盖iOS Safari的行为
+    window.addEventListener('touchstart', this.handleClick);
     // 添加resize事件监听器来更新窗口尺寸
     window.addEventListener('resize', this.handleResize);
   },
   beforeDestroy() {
     // 移除监听器以防内存泄露
     window.removeEventListener('click', this.handleClick);
+    // 移除触摸事件监听器
+    window.removeEventListener('touchstart', this.handleClick);
     // 移除监听器
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     handleClick(event) {
       // event.clientX 和 event.clientY 会给你点击位置的坐标
-      const x = event.clientX;
-      const y = event.clientY;
+      let x, y;
+      // 检查事件类型
+      if (event.touches && event.touches.length) {
+        // 触摸事件
+        x = event.touches[0].clientX;
+        y = event.touches[0].clientY;
+      } else {
+        // 鼠标事件
+        x = event.clientX;
+        y = event.clientY;
+      }
       const w = this.windowWidth;
       const h = this.windowHeight;
       // console.log(`Clicked at x: ${x}, y: ${y}, w: ${w}, h: ${h}`);
+      // alert(`Clicked at x: ${x}, y: ${y}, w: ${w}, h: ${h}`);
       homeClick(x, y, w, h)
       .then(res => {
         if(res && res.data && res.data.url){
